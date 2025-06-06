@@ -3,16 +3,18 @@ import Header from "../shared/components/Header/Header";
 import { ThemeProviderCustom } from "../shared/contexts/ThemeContext";
 import AppRoutes from "./routes";
 import '../i18n/config';
+import { EnvironmentProvider } from "../shared/contexts/EnvironmentContext";
 
 function App() {
   return (
-    <ThemeProviderCustom>
-      <BaseLayout>
-        <Header />
-        <AppRoutes />
-      </BaseLayout>
-    </ThemeProviderCustom>
-
+    <EnvironmentProvider>
+      <ThemeProviderCustom>
+        <BaseLayout>
+          <Header />
+          <AppRoutes />
+        </BaseLayout>
+      </ThemeProviderCustom>
+    </EnvironmentProvider>
   );
 }
 
