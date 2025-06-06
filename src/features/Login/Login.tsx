@@ -12,9 +12,11 @@ import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { LoginFormType } from "./types/loginFormType";
 import { loginFormSchema } from "./schemas/loginFormSchema";
+import { useTranslation } from "react-i18next";
 
 
 function Login() {
+    const { t } = useTranslation();
     const [loading, setLoading] = useState(false);
 
     const {
@@ -48,26 +50,26 @@ function Login() {
             onSubmit={handleSubmit(onSubmit)}
             sx={{ maxWidth: 400, mx: "auto", mt: 10, display: "flex", flexDirection: "column", gap: 2 }}
         >
-            <Typography variant="h5">Login</Typography>
+            <Typography variant="h5">{t("feature.login.login")}</Typography>
 
             <FormControl error={!!errors.email} fullWidth variant="outlined">
-                <InputLabel htmlFor="email">Email</InputLabel>
+                <InputLabel htmlFor="email">{t("feature.login.email")}</InputLabel>
                 <Controller
                     name="email"
                     control={control}
                     defaultValue=""
-                    render={({ field }) => <OutlinedInput label="Email" id="email" type="email" {...field} />}
+                    render={({ field }) => <OutlinedInput label={t("feature.login.email")} id="email" type="email" {...field} />}
                 />
                 <FormHelperText>{errors.email?.message}</FormHelperText>
             </FormControl>
 
             <FormControl error={!!errors.password} fullWidth variant="outlined">
-                <InputLabel htmlFor="password">Password</InputLabel>
+                <InputLabel htmlFor="password">{t("feature.login.password")}</InputLabel>
                 <Controller
                     name="password"
                     control={control}
                     defaultValue=""
-                    render={({ field }) => <OutlinedInput label="Password" id="password" type="password" {...field} />}
+                    render={({ field }) => <OutlinedInput label={t("feature.login.password")} id="password" type="password" {...field} />}
                 />
                 <FormHelperText>{errors.password?.message}</FormHelperText>
             </FormControl>
@@ -77,7 +79,7 @@ function Login() {
             </Button>
 
             <Button color="secondary" variant="text" disabled={loading} onClick={() => alert("Sign up screen coming soon...")}>
-                Don't have an account? Sign up
+                {t("feature.login.dontHaveAccount")}
             </Button>
         </Box>
     );

@@ -1,0 +1,15 @@
+{
+    "feature": {
+        "login": {
+            "login": "Login",
+            "email": "Email",
+            "password": "Password",
+            "dontHaveAccount": "Don't have an account? Sign up"
+        }
+    },
+    "zod": {
+        "required": "This field is required.",
+        "invalid_email": "Invalid email format.",
+        "min_length": "Must be at least {{min}} characters long."
+    }
+}

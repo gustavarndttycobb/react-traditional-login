@@ -4,6 +4,7 @@
     "esModuleInterop": true,
     "module": "esnext",
     "target": "es5",
+    "resolveJsonModule": true,
     "lib": [
       "dom",
       "dom.iterable",
