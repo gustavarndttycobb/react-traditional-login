@@ -1,11 +1,11 @@
 import { createContext, useContext, useState } from "react";
 import { LoginFormType } from "../types/loginFormType";
-import { loginService } from "../services/loginService";
-import { User } from "../../../mocks/handlers";
+import { authService } from "../services/login.service";
+import { UserData } from "../models/userData.model";
 
 interface LoginContextType {
     isAuthenticated: boolean;
-    user: User | null;
+    user: UserData | null;
     login: (data: LoginFormType) => Promise<void>;
 }
 
@@ -13,10 +13,11 @@ const LoginContext = createContext<LoginContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const [user, setUser] = useState<User | null>(null);
+    const [user, setUser] = useState<UserData
+        | null>(null);
 
     const login = async (data: LoginFormType) => {
-        const response = await loginService(data);
+        const response = await authService.login(data);
         setUser(response.user);
         setIsAuthenticated(true);
     };

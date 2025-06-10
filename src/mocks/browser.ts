@@ -1,6 +1,5 @@
-import { handlers } from './handlers.js'
-import {setupWorker} from "msw/browser"
- 
-export const worker = setupWorker(...handlers)
+import { setupServer } from 'msw/node'
+import { handlers } from "./handlers"
 
-worker.start()
+export const server = setupServer(...handlers)
+
