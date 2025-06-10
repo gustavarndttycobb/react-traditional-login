@@ -64,5 +64,10 @@
     "util": "^0.12.5",
     "vite": "^6.3.5",
     "vitest": "^3.2.2"
+  },
+  "msw": {
+    "workerDirectory": [
+      "public"
+    ]
   }
 }
