@@ -3,8 +3,10 @@ import { ILoginBody } from "../../features/Auth/models/loginBody.model";
 import { ILoginResponse } from "../../features/Auth/models/loginResponse.model";
 import { authResponseMocked } from "../../features/Auth/mocks/authResponse.mock";
 import { authBodyMocked } from "../../features/Auth/mocks/authBody.mock";
+import { ISignupBody } from "../../features/Auth/models/signupBody.model";
+import { LOGIN_ENDPOINT, SIGNUP_ENDPOINT } from "../../utils/endpoints";
 
-const loginServiceHandler = http.post('/api/auth/login', async ({ request }) => {
+const loginServiceHandler = http.post(LOGIN_ENDPOINT, async ({ request }) => {
     const requestBody = await request.json() as ILoginBody;
     const email = requestBody?.email;
     const password = requestBody?.password;
@@ -14,8 +16,21 @@ const loginServiceHandler = http.post('/api/auth/login', async ({ request }) => 
     return HttpResponse.json<ILoginResponse>(authResponseMocked);
 })
 
-const loginHandlers = [
-    loginServiceHandler
+const signupServiceHandler = http.post(SIGNUP_ENDPOINT, async ({ request }) => {
+    const requestBody = await request.json() as ISignupBody;
+    const email = requestBody?.email;
+    const password = requestBody?.password;
+    const firstName = requestBody?.firstName;
+    const lastName = requestBody?.lastName;
+    if (!firstName || !lastName || !email || !password) {
+        return HttpResponse.json({ message: `missing required fields` }, { status: 401 });
+    }
+    return HttpResponse.json({ message: `User successfully created` }, { status: 201 });
+})
+
+const authHandlers = [
+    loginServiceHandler,
+    signupServiceHandler
 ]
 
-export default loginHandlers
+export default authHandlers

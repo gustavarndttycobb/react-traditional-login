@@ -1,9 +1,11 @@
-import loginHandlers from "../../../mocks/services/login.handlers";
-import { authService, AuthService } from "../services/login.service";
+import authHandlers from "../../../mocks/services/login.handlers";
+import { LOGIN_ENDPOINT, SIGNUP_ENDPOINT } from "../../../utils/endpoints";
+import { authService, AuthService } from "../services/auth.service";
 
 
 const serviceMethodToPathMap: Record<keyof AuthService, string> = {
-    login: "/api/auth/login",
+    login: LOGIN_ENDPOINT,
+    signup: SIGNUP_ENDPOINT
     //TODO: logout: "/api/auth/logout"
     //TODO: register: "/api/auth/register"
 };
@@ -16,7 +18,7 @@ describe("Mock handlers coverage validation", () => {
                 return typeof value === "function" && key !== "constructor";
             });
 
-        const handlerPaths = loginHandlers.map((handler) => handler.info.path);
+        const handlerPaths = authHandlers.map((handler) => handler.info.path);
 
         serviceMethods.forEach((method) => {
             const expectedPath = serviceMethodToPathMap[method];

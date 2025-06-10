@@ -1,5 +1,5 @@
-import loginHandlers from "./services/login.handlers";
+import authHandlers from "./services/login.handlers";
 
 export const handlers = [
-  ...loginHandlers
+  ...authHandlers
 ];

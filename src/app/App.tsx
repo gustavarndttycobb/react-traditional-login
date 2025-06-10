@@ -3,7 +3,7 @@ import Header from "../shared/components/Header/Header";
 import { ThemeProviderCustom } from "../shared/contexts/ThemeContext";
 import AppRoutes from "./routes";
 import '../i18n/config';
-import { AuthProvider } from "../features/Auth/context/AuthContext";
+import { AuthProvider } from "../features/Auth/contexts/AuthContext";
 
 function App() {
   return (

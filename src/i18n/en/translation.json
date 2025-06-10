@@ -1,10 +1,15 @@
 {
     "feature": {
-        "login": {
+        "auth": {
             "login": "Login",
             "email": "Email",
             "password": "Password",
-            "dontHaveAccount": "Don't have an account? Sign up"
+            "dontHaveAccount": "Don't have an account? Sign up",
+            "firstName": "First name",
+            "lastName": "Last name",
+            "confirmPassword": "Confirm password",
+            "signup": "Sign up",
+            "haveAccount": "Already have an account? Log in"
         }
     },
     "zod": {
