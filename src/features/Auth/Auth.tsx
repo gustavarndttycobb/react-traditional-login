@@ -16,10 +16,10 @@ import { LoginFormType } from "./types/loginFormType";
 import { loginFormSchema } from "./schemas/loginFormSchema";
 import { useTranslation } from "react-i18next";
 import { authService } from "./services/login.service";
-import { UserAuth } from "./models/userAuth.model";
+import { ILoginBody } from "./models/loginBody.model";
 
 
-function Login() {
+function Auth() {
     const { t } = useTranslation();
     const [loading, setLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -33,7 +33,7 @@ function Login() {
         resolver: zodResolver(loginFormSchema),
     });
 
-    const onSubmit = async (data: UserAuth) => {
+    const onSubmit = async (data: ILoginBody) => {
         setLoading(true);
         try {
             setErrorMessage(null);
@@ -109,4 +109,4 @@ function Login() {
     );
 }
 
-export default Login;
+export default Auth;

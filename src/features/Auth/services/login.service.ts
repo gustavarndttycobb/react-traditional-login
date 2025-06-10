@@ -1,11 +1,12 @@
-import { AuthServiceContract } from "../contracts/login.contract";
-import { LoginResponse } from "../models/loginResponse.model";
+import { LOGIN_ENDPOINT } from "../../../utils/endpoints";
+import { AuthServiceContract } from "../contracts/auth.contract";
+import { ILoginResponse } from "../models/loginResponse.model";
 import { LoginFormType } from "../types/loginFormType";
 
 export class AuthService implements AuthServiceContract {
 
-  async login(data: LoginFormType): Promise<LoginResponse> {
-    const response = await fetch("/api/auth/login", {
+  async login(data: LoginFormType): Promise<ILoginResponse> {
+    const response = await fetch(LOGIN_ENDPOINT, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),

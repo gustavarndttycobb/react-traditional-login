@@ -1,10 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router";
-import Login from "../features/Login/Login";
+import Auth from "../features/Auth/Auth";
 function AppRoutes() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<Login />} />
+                <Route path="/" element={<Auth />} />
             </Routes>
         </BrowserRouter>
     );

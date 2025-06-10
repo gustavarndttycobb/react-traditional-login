@@ -1,19 +1,19 @@
 import { createContext, useContext, useState } from "react";
 import { LoginFormType } from "../types/loginFormType";
 import { authService } from "../services/login.service";
-import { UserData } from "../models/userData.model";
+import { IUserData } from "../models/userData.model";
 
-interface LoginContextType {
+interface IAuthContextType {
     isAuthenticated: boolean;
-    user: UserData | null;
+    user: IUserData | null;
     login: (data: LoginFormType) => Promise<void>;
 }
 
-const LoginContext = createContext<LoginContextType | undefined>(undefined);
+const AuthContext = createContext<IAuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const [user, setUser] = useState<UserData
+    const [user, setUser] = useState<IUserData
         | null>(null);
 
     const login = async (data: LoginFormType) => {
@@ -23,14 +23,14 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     };
 
     return (
-        <LoginContext.Provider value={{ isAuthenticated, user, login }}>
+        <AuthContext.Provider value={{ isAuthenticated, user, login }}>
             {children}
-        </LoginContext.Provider>
+        </AuthContext.Provider>
     );
 };
 
 export const useAuth = () => {
-    const ctx = useContext(LoginContext);
+    const ctx = useContext(AuthContext);
     if (!ctx) throw new Error("useAuth must be used within an AuthProvider");
     return ctx;
 };
