@@ -1,6 +1,6 @@
 import { TextEncoder, TextDecoder } from "util";
+import { setupServer } from 'msw/node'
 import 'whatwg-fetch';
-import { server } from './src/mocks/browser'
 import "@testing-library/jest-dom";
 
 Object.defineProperty(globalThis, "TextEncoder", {
@@ -12,6 +12,8 @@ Object.defineProperty(globalThis, "TextDecoder", {
   value: TextDecoder,
   configurable: true,
 });
+
+const server = setupServer();
 
 
 // Establish API mocking before all tests.
