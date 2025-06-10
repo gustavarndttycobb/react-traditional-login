@@ -9,7 +9,7 @@ const loginServiceHandler = http.post('/api/auth/login', async ({ request }) => 
     const email = requestBody?.email;
     const password = requestBody?.password;
     if (email !== authBodyMocked.email || password !== authBodyMocked.password) {
-        return HttpResponse.json<LoginResponse>(authResponseMocked, { status: 401 });
+        return HttpResponse.json({ message: `User not found` }, { status: 401 });
     }
     return HttpResponse.json<LoginResponse>(authResponseMocked);
 })
