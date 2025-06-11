@@ -7,8 +7,6 @@ import {
     InputLabel,
     OutlinedInput,
     Typography,
-    Snackbar,
-    Alert,
     Fade,
 } from "@mui/material";
 import { useForm, Controller } from "react-hook-form";
@@ -21,6 +19,7 @@ import { ILoginBody } from "../../models/loginBody.model";
 import { authStepsEnum } from "../../enums/auth.enum";
 import { useAuth } from "../../contexts/AuthContext";
 import { useNavigate } from "react-router";
+import SnackbarCustom from "../../../../shared/components/Snackbar/Snackbar";
 
 interface ILogin {
     setAuthMode: React.Dispatch<React.SetStateAction<authStepsEnum>>
@@ -64,9 +63,6 @@ function Login({ setAuthMode }: ILogin) {
                     component="form"
                     onSubmit={handleSubmit(onSubmit)}
                     sx={{
-                        maxWidth: 400,
-                        mx: "auto",
-                        mt: 10,
                         display: "flex",
                         flexDirection: "column",
                         gap: 2,
@@ -90,7 +86,9 @@ function Login({ setAuthMode }: ILogin) {
                                 />
                             )}
                         />
-                        <FormHelperText>{errors.email?.message}</FormHelperText>
+                        <FormHelperText sx={{
+                            height: "10px"
+                        }}>{errors.email?.message}</FormHelperText>
                     </FormControl>
 
                     <FormControl error={!!errors.password} fullWidth variant="outlined">
@@ -108,7 +106,9 @@ function Login({ setAuthMode }: ILogin) {
                                 />
                             )}
                         />
-                        <FormHelperText>{errors.password?.message}</FormHelperText>
+                        <FormHelperText sx={{
+                            height: "10px"
+                        }}>{errors.password?.message}</FormHelperText>
                     </FormControl>
 
                     <Button variant="contained" color="primary" type="submit" disabled={isLoading}>
@@ -120,23 +120,7 @@ function Login({ setAuthMode }: ILogin) {
                     </Button>
                 </Box>
             </Fade>
-
-            <Snackbar
-                open={snackbarOpen}
-                autoHideDuration={4000}
-                onClose={() => setSnackbarOpen(false)}
-                anchorOrigin={{ vertical: "top", horizontal: "center" }}
-            >
-                <Alert
-                    onClose={() => setSnackbarOpen(false)}
-                    severity="error"
-                    sx={{ width: "100%" }}
-                    elevation={6}
-                    variant="filled"
-                >
-                    {errorMessage}
-                </Alert>
-            </Snackbar>
+            <SnackbarCustom message={errorMessage ?? ""} snackbarOpen={snackbarOpen} setSnackbarOpen={setSnackbarOpen} severity="error" />
         </>
     );
 }

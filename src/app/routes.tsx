@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router";
 import Auth from "../features/Auth/Auth";
-import Home from "../features/Home/Home";
+import PageExample from "../features/PageExample/PageExample";
 import ProtectedRoute from "./ProtectedRoute";
 
 function AppRoutes() {
@@ -12,7 +12,7 @@ function AppRoutes() {
                     path="/home"
                     element={
                         <ProtectedRoute>
-                            <Home />
+                            <PageExample />
                         </ProtectedRoute>
                     }
                 />

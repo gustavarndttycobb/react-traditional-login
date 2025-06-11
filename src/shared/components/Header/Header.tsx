@@ -19,6 +19,7 @@ function Header() {
       alignItems: "center",
       gap: 2,
       padding: 1,
+      position: "fixed",
     }}>
       <Select
         value={i18n.language}

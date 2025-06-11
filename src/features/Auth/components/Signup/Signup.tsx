@@ -7,8 +7,6 @@ import {
     OutlinedInput,
     Fade,
     Button,
-    Snackbar,
-    Alert,
     Typography,
 } from "@mui/material";
 import { useForm, Controller } from "react-hook-form";
@@ -19,6 +17,7 @@ import { authService } from "../../services/auth.service";
 import { SignupFormType } from "../../types/signupFormType";
 import { signupFormSchema } from "../../schemas/signupFormSchema";
 import { authStepsEnum } from "../../enums/auth.enum";
+import SnackbarCustom from "../../../../shared/components/Snackbar/Snackbar";
 
 interface ISignup {
     setAuthMode: React.Dispatch<React.SetStateAction<authStepsEnum>>
@@ -66,9 +65,6 @@ function Signup({ setAuthMode }: ISignup) {
                     component="form"
                     onSubmit={handleSubmit(onSubmit)}
                     sx={{
-                        maxWidth: 400,
-                        mx: "auto",
-                        mt: 10,
                         display: "flex",
                         flexDirection: "column",
                         gap: 2,
@@ -91,7 +87,9 @@ function Signup({ setAuthMode }: ISignup) {
                                 />
                             )}
                         />
-                        <FormHelperText>{errors.firstName?.message}</FormHelperText>
+                        <FormHelperText sx={{
+                            height: "10px"
+                        }}>{errors.firstName?.message}</FormHelperText>
                     </FormControl>
                     <FormControl error={!!errors.lastName} fullWidth variant="outlined">
                         <InputLabel htmlFor="name">{t("feature.auth.lastName")}</InputLabel>
@@ -107,7 +105,9 @@ function Signup({ setAuthMode }: ISignup) {
                                 />
                             )}
                         />
-                        <FormHelperText>{errors.lastName?.message}</FormHelperText>
+                        <FormHelperText sx={{
+                            height: "10px"
+                        }}>{errors.lastName?.message}</FormHelperText>
                     </FormControl>
                     <FormControl error={!!errors.email} fullWidth variant="outlined">
                         <InputLabel htmlFor="email">{t("feature.auth.email")}</InputLabel>
@@ -124,7 +124,9 @@ function Signup({ setAuthMode }: ISignup) {
                                 />
                             )}
                         />
-                        <FormHelperText>{errors.email?.message}</FormHelperText>
+                        <FormHelperText sx={{
+                            height: "10px"
+                        }}>{errors.email?.message}</FormHelperText>
                     </FormControl>
 
                     <FormControl error={!!errors.password} fullWidth variant="outlined">
@@ -142,7 +144,9 @@ function Signup({ setAuthMode }: ISignup) {
                                 />
                             )}
                         />
-                        <FormHelperText>{errors.password?.message}</FormHelperText>
+                        <FormHelperText sx={{
+                            height: "10px"
+                        }}>{errors.password?.message}</FormHelperText>
                     </FormControl>
                     <FormControl error={!!errors.confirmPassword} fullWidth variant="outlined">
                         <InputLabel htmlFor="confirmPassword">
@@ -161,7 +165,9 @@ function Signup({ setAuthMode }: ISignup) {
                                 />
                             )}
                         />
-                        <FormHelperText>{errors.confirmPassword?.message}</FormHelperText>
+                        <FormHelperText sx={{
+                            height: "10px"
+                        }}>{errors.confirmPassword?.message}</FormHelperText>
                     </FormControl>
                     <Button variant="contained" color="primary" type="submit" disabled={loading}>
                         {loading ? t("feature.auth.loading") : t("feature.auth.signup")}
@@ -173,22 +179,7 @@ function Signup({ setAuthMode }: ISignup) {
                 </Box>
 
             </Fade>
-            <Snackbar
-                open={snackbarOpen}
-                autoHideDuration={4000}
-                onClose={() => setSnackbarOpen(false)}
-                anchorOrigin={{ vertical: "top", horizontal: "center" }}
-            >
-                <Alert
-                    onClose={() => setSnackbarOpen(false)}
-                    severity="error"
-                    sx={{ width: "100%" }}
-                    elevation={6}
-                    variant="filled"
-                >
-                    {errorMessage}
-                </Alert>
-            </Snackbar>
+            <SnackbarCustom message={errorMessage ?? ""} snackbarOpen={snackbarOpen} setSnackbarOpen={setSnackbarOpen} severity="error" />
         </>
     );
 }
