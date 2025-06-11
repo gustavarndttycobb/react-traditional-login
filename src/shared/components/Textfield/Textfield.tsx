@@ -13,7 +13,7 @@ type CustomTextFieldProps = TextFieldProps & {
 const StyledTextField = styled(TextField)(({ theme }) => ({
     width: '100%',
     '& .MuiOutlinedInput-root': {
-        padding: 0,
+        borderRadius: "10px",
         '& fieldset': {
             borderColor: theme.palette.divider,
         },
@@ -25,9 +25,7 @@ const StyledTextField = styled(TextField)(({ theme }) => ({
             boxShadow: `0 0 0 2px ${theme.palette.primary.main}33`,
         },
     },
-    '& .MuiOutlinedInput-input': {
-        padding: theme.spacing(1.25, 1.5),
-    },
+
 }));
 
 export const TextFieldCustom: React.FC<CustomTextFieldProps> = ({
@@ -47,14 +45,10 @@ export const TextFieldCustom: React.FC<CustomTextFieldProps> = ({
                 input: {
                     ...slotProps?.input,
                     startAdornment: startIcon ? (
-                        <InputAdornment position="start" sx={{
-                            marginLeft: '5px',
-                        }}>{startIcon}</InputAdornment>
+                        <InputAdornment position="start" >{startIcon}</InputAdornment>
                     ) : undefined,
                     endAdornment: endIcon ? (
-                        <InputAdornment position="end" sx={{
-                            marginRight: '5px'
-                        }}>{endIcon}</InputAdornment>
+                        <InputAdornment position="end" >{endIcon}</InputAdornment>
                     ) : undefined,
                 },
             }}

@@ -8,14 +8,13 @@ type IButtonProps = ButtonProps & {
 
 const StyledButton = styled(Button, {
     shouldForwardProp: (prop) => prop !== 'variant',
-})<ButtonProps>(({ theme, variant }) => {
+})<ButtonProps>(({ variant }) => {
     const base = {
         width: '100%',
         fontWeight: 500,
-        paddingTop: theme.spacing(1.25),
-        paddingBottom: theme.spacing(1.25),
         transition: 'all 200ms ease-in-out',
         transform: 'scale(1)',
+        borderRadius: "10px",
         '&:active': {
             transform: 'scale(0.98)',
         },

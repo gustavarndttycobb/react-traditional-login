@@ -1,14 +1,15 @@
-import { DarkMode } from "@mui/icons-material";
-import { Box, IconButton, MenuItem, Select, SelectChangeEvent } from "@mui/material";
+import { Box } from "@mui/material";
 import { useThemeContext } from "../../contexts/ThemeContext";
 import { useTranslation } from "react-i18next";
+import { ThemeToggleButton } from "../ThemeToggleButton/ThemeToggleButton";
+import { LanguageSelectorButton } from "../LanguageSelectorButton/LanguageSelectorButton";
 
 function Header() {
   const { toggleColorMode } = useThemeContext();
   const { i18n } = useTranslation();
 
-  const handleLanguageChange = (event: SelectChangeEvent) => {
-    i18n.changeLanguage(event.target.value);
+  const handleLanguageChange = (language: string) => {
+    i18n.changeLanguage(language);
   };
 
   return (
@@ -21,20 +22,10 @@ function Header() {
       padding: 1,
       position: "fixed",
     }}>
-      <Select
-        value={i18n.language}
-        onChange={handleLanguageChange}
-        size="small"
-        variant="outlined"
-        sx={{ minWidth: 80 }}
-      >
-        <MenuItem value="en">EN</MenuItem>
-        <MenuItem value="pt">PT</MenuItem>
-      </Select>
-
-      <IconButton onClick={toggleColorMode}>
-        <DarkMode sx={{ color: "primary.main", fontSize: "2rem" }} />
-      </IconButton>
+      <LanguageSelectorButton currentLanguage={i18n.language} languages={[{ code: 'en', label: 'English' }, { code: 'pt', label: 'Português' }]}
+        onChangeLanguage={handleLanguageChange}
+      />
+      <ThemeToggleButton onClickToggleTheme={toggleColorMode} />
     </Box>
   );
 }

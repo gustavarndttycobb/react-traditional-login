@@ -1,15 +1,16 @@
 {
   "feature": {
     "auth": {
-      "login": "Login",
+      "signin": "Entrar",
       "email": "Email",
       "password": "Senha",
-      "dontHaveAccount": "Não tem uma conta? Cadastre-se",
-      "firstName": "Primeiro nome",
-      "lastName": "Sobrenome",
+      "dontHaveAccount": "Não tem uma conta?",
+      "fullName": "Nome completo",
       "confirmPassword": "Confirmar senha",
       "signup": "Cadastrar",
-      "haveAccount": "Já tem uma conta? Entrar"
+      "haveAccount": "Já tem uma conta?",
+      "welcomeBack": "Bem vindo de volta",
+      "signInDescription": "Entre com sua conta para continuar"
     }
   },
   "zod": {
