@@ -16,7 +16,7 @@ import { signupFormSchema } from "../../schemas/signupFormSchema";
 import { authStepsEnum } from "../../enums/auth.enum";
 import SnackbarCustom from "../../../../shared/components/Snackbar/Snackbar";
 import CardCustom from "../../../../shared/components/Card/Card";
-import { Email, LockOutline, Lock, PersonOutline } from "@mui/icons-material";
+import { EmailOutlined, LockOutline, PersonOutline } from "@mui/icons-material";
 import { TextFieldCustom } from "../../../../shared/components/Textfield/Textfield";
 import ButtonCustom from "../../../../shared/components/Button/Button";
 
@@ -153,7 +153,7 @@ function Signup({ setAuthMode }: ISignup) {
                                         <TextFieldCustom
                                             label={t("feature.auth.email")}
                                             id="email"
-                                            startIcon={<Email sx={{ fontSize: "20px" }} />}
+                                            startIcon={<EmailOutlined sx={{ fontSize: "20px" }} />}
                                             placeholder="Enter your email"
                                             type='email'
                                             {...field}
@@ -175,7 +175,7 @@ function Signup({ setAuthMode }: ISignup) {
                                             label={t("feature.auth.password")}
                                             id="password"
                                             type="password"
-                                            startIcon={<Lock sx={{
+                                            startIcon={<LockOutline sx={{
                                                 fontSize: "20px"
                                             }} />}
                                             placeholder="Enter your password"
@@ -198,7 +198,7 @@ function Signup({ setAuthMode }: ISignup) {
                                             label={t("feature.auth.confirmPassword")}
                                             id="confirmPassword"
                                             type="password"
-                                            startIcon={<Lock sx={{
+                                            startIcon={<LockOutline sx={{
                                                 fontSize: "20px"
                                             }} />}
                                             placeholder="Confirm your password"

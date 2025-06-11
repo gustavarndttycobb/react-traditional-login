@@ -17,7 +17,7 @@ import { useAuth } from "../../contexts/AuthContext";
 import { useNavigate } from "react-router";
 import SnackbarCustom from "../../../../shared/components/Snackbar/Snackbar";
 import CardCustom from "../../../../shared/components/Card/Card";
-import { Email, Lock, LockOutline } from "@mui/icons-material";
+import { EmailOutlined,  LockOutline } from "@mui/icons-material";
 import { TextFieldCustom } from "../../../../shared/components/Textfield/Textfield";
 import ButtonCustom from "../../../../shared/components/Button/Button";
 
@@ -130,7 +130,7 @@ function Login({ setAuthMode }: ILogin) {
                                         <TextFieldCustom
                                             label={t("feature.auth.email")}
                                             id="email"
-                                            startIcon={<Email sx={{ fontSize: "20px" }} />}
+                                            startIcon={<EmailOutlined sx={{ fontSize: "20px" }} />}
                                             placeholder="Enter your email"
                                             type='email'
                                             {...field}
@@ -152,7 +152,7 @@ function Login({ setAuthMode }: ILogin) {
                                             label={t("feature.auth.password")}
                                             id="password"
                                             type="password"
-                                            startIcon={<Lock sx={{
+                                            startIcon={<LockOutline sx={{
                                                 fontSize: "20px"
                                             }} />}
                                             placeholder="Enter your password"

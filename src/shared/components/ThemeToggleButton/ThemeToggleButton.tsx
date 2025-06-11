@@ -16,26 +16,12 @@ const StyledButton = styled(Button)(({ theme }) => ({
     padding: 0,
     overflow: 'hidden',
     borderRadius: theme.shape.borderRadius,
+    border: `1px solid ${theme.palette.divider}`,
+    color: theme.palette.text.primary,
     transition: 'all 300ms ease',
     '&:hover': {
+        border: `1px solid ${theme.palette.divider}`,
         transform: 'scale(1.05)',
-    },
-    svg: {
-        position: 'absolute',
-        fontSize: '1.4rem',
-        transition: 'all 300ms ease',
-    },
-    '.light-icon': {
-        opacity: theme.palette.mode === 'dark' ? 0 : 1,
-        transform: theme.palette.mode === 'dark'
-            ? 'rotate(-90deg) scale(0)'
-            : 'rotate(0deg) scale(1)',
-    },
-    '.dark-icon': {
-        opacity: theme.palette.mode === 'dark' ? 1 : 0,
-        transform: theme.palette.mode === 'dark'
-            ? 'rotate(0deg) scale(1)'
-            : 'rotate(90deg) scale(0)',
     },
 }));
 
@@ -49,8 +35,8 @@ export function ThemeToggleButton({ onClickToggleTheme, ...props }: IToggleTheme
 
     return (
         <StyledButton variant="outlined" onClick={toggleTheme} {...props}>
-            {mode === 'light' && <LightModeIcon className="light-icon" />}
-            {mode === 'dark' && <DarkModeIcon className="dark-icon" />}
+            {mode === 'light' && <LightModeIcon className="light-icon" fontSize="small" />}
+            {mode === 'dark' && <DarkModeIcon className="dark-icon" fontSize="small" />}
         </StyledButton>
     );
 }

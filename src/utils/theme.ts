@@ -1,31 +1,59 @@
-import { createTheme } from "@mui/material";
+import { createTheme, ThemeOptions } from '@mui/material';
 
+const sharedTheme: ThemeOptions = {
+  shape: {
+    borderRadius: 12, // baseado em --radius: 0.75rem = 12px
+  },
+  typography: {
+    fontFamily: `'Inter', sans-serif`,
+  }
+};
+
+// Utilizando os valores do seu CSS :root e .dark
 export const lightTheme = createTheme({
+  ...sharedTheme,
   palette: {
-    mode: "light",
+    mode: 'light',
+    background: {
+      default: '#ffffff', // --background
+      paper: '#ffffff',   // --card
+    },
+    text: {
+      primary: '#0a0a0a', // --foreground
+      secondary: '#737373', // --muted-foreground
+    },
     primary: {
-      main: "#EC5766",
+      main: '#dc2626', // --primary
+      contrastText: '#fef2f2', // --primary-foreground
     },
     secondary: {
-      main: "#FCCAC9",
+      main: '#f5f5f5', // --secondary
+      contrastText: '#171717', // --secondary-foreground
     },
-    background: {
-      default: "#F5F5F5",
-    },
+    divider: '#e5e5e5', // --border
   },
 });
 
 export const darkTheme = createTheme({
+  ...sharedTheme,
   palette: {
-    mode: "dark",
+    mode: 'dark',
+    background: {
+      default: '#0a0a0a', // --background
+      paper: '#0a0a0a',   // --card
+    },
+    text: {
+      primary: '#fafafa', // --foreground
+      secondary: '#a3a3a3', // --muted-foreground
+    },
     primary: {
-      main: "#1976d2",
+      main: '#dc2626', // --primary
+      contrastText: '#fef2f2', // --primary-foreground
     },
     secondary: {
-      main: "#dc004e",
+      main: '#262626', // --secondary
+      contrastText: '#fafafa', // --secondary-foreground
     },
-    background: {
-      default: "#121212",
-    },
+    divider: '#262626', // --border
   },
 });

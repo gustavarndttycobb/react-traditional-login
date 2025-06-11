@@ -29,13 +29,14 @@ const StyledButton = styled(Button)(({ theme }) => ({
     padding: 0,
     overflow: 'hidden',
     borderRadius: theme.shape.borderRadius,
+    border: `1px solid ${theme.palette.divider}`,
+    color: theme.palette.text.primary,
     transition: 'all 300ms ease',
     '&:hover': {
+        border: `1px solid ${theme.palette.divider}`,
         transform: 'scale(1.05)',
     },
-    svg: {
-        fontSize: '1.4rem',
-    },
+
 }));
 
 export function LanguageSelectorButton({
@@ -68,7 +69,7 @@ export function LanguageSelectorButton({
                 aria-expanded={open ? 'true' : undefined}
                 {...props}
             >
-                <Translate />
+                <Translate fontSize='small' />
             </StyledButton>
             <Menu
                 id="language-menu"

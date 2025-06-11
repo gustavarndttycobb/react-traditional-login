@@ -8,7 +8,7 @@ type IButtonProps = ButtonProps & {
 
 const StyledButton = styled(Button, {
     shouldForwardProp: (prop) => prop !== 'variant',
-})<ButtonProps>(({ variant }) => {
+})<ButtonProps>(({ theme, variant }) => {
     const base = {
         width: '100%',
         fontWeight: 500,
@@ -22,32 +22,25 @@ const StyledButton = styled(Button, {
 
     const variants = {
         contained: {
-            background: 'linear-gradient(to right, #ef4444, #dc2626)',
-            color: '#fff',
+            background: theme.palette.primary.main,
+            color: theme.palette.primary.contrastText,
             '&:hover': {
-                background: 'linear-gradient(to right, #dc2626, #b91c1c)',
+                opacity: 0.9,
                 transform: 'scale(1.02)',
             },
         },
         outlined: {
             background: 'transparent',
-            color: '#dc2626',
-            border: '1px solid transparent',
-            backgroundImage:
-                'linear-gradient(white, white), linear-gradient(to right, #ef4444, #dc2626)',
-            backgroundOrigin: 'border-box',
-            backgroundClip: 'padding-box, border-box',
+            color: theme.palette.primary.main,
+            border: `1px solid ${theme.palette.primary.main}`,
             '&:hover': {
-                backgroundImage:
-                    'linear-gradient(white, white), linear-gradient(to right, #dc2626, #b91c1c)',
                 transform: 'scale(1.02)',
             },
         },
         text: {
             background: 'transparent',
-            color: '#dc2626',
+            color: theme.palette.primary.main,
             '&:hover': {
-                backgroundColor: 'rgba(220, 38, 38, 0.08)',
                 transform: 'scale(1.02)',
             },
         },

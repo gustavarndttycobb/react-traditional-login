@@ -21,6 +21,7 @@ function Header() {
       gap: 2,
       padding: 1,
       position: "fixed",
+      backgroundColor: "transparent",
     }}>
       <LanguageSelectorButton currentLanguage={i18n.language} languages={[{ code: 'en', label: 'English' }, { code: 'pt', label: 'Português' }]}
         onChangeLanguage={handleLanguageChange}

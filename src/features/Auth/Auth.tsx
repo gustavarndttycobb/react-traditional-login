@@ -15,7 +15,7 @@ function Auth() {
         <Fade in>
             <Box
                 sx={{
-                    maxWidth: 400,
+                    width: "100%",
                     mx: "auto",
                     mt: 10,
                     display: "flex",

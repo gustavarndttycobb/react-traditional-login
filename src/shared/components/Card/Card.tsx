@@ -8,9 +8,9 @@ const StyledCard = styled(Card)(({ theme }) => ({
     maxWidth: 400,
     margin: 'auto',
     backdropFilter: 'blur(4px)',
-    backgroundColor: theme.palette.background.paper + 'F2', // Similar to bg-card/95
+    backgroundColor: theme.palette.background.paper,
     border: `1px solid ${theme.palette.divider}`,
-    boxShadow: theme.shadows[6],
+    boxShadow: theme.shadows[3],
     borderRadius: "10px",
 }));
 
