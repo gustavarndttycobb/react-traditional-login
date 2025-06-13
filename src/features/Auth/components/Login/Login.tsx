@@ -17,7 +17,7 @@ import { useAuth } from "../../contexts/AuthContext";
 import { useNavigate } from "react-router";
 import SnackbarCustom from "../../../../shared/components/Snackbar/Snackbar";
 import CardCustom from "../../../../shared/components/Card/Card";
-import { EmailOutlined,  LockOutline } from "@mui/icons-material";
+import { EmailOutlined, LockOutline } from "@mui/icons-material";
 import { TextFieldCustom } from "../../../../shared/components/Textfield/Textfield";
 import ButtonCustom from "../../../../shared/components/Button/Button";
 
@@ -41,9 +41,6 @@ function Login({ setAuthMode }: ILogin) {
 
     const onSubmit = async (data: LoginFormType) => {
         await login(data as ILoginBody);
-        if (isAuthenticated) {
-            navigate("/home");
-        }
     };
 
     const toggleAuthMode = () => {
@@ -55,6 +52,12 @@ function Login({ setAuthMode }: ILogin) {
             setSnackbarOpen(true);
         }
     }, [errorMessage]);
+
+    useEffect(() => {
+        if (isAuthenticated) {
+            navigate("/home");
+        }
+    }, [isAuthenticated, navigate]);
 
     return (
         <>

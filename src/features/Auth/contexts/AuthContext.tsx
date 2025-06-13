@@ -1,8 +1,10 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { LoginFormType } from "../types/loginFormType";
 import { authService } from "../services/auth.service";
 import { IUserData } from "../models/userData.model";
 import { ILoginBody } from "../models/loginBody.model";
+import { userService } from "../../../shared/services/user.service";
+import { IGetUserDataResponse } from "../../../shared/models/getUserDataResponse.model";
 
 interface IAuthContextType {
     isAuthenticated: boolean;
@@ -18,18 +20,15 @@ const AuthContext = createContext<IAuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const [token, setToken] = useState<string | null>(localStorage.getItem("token"));
-    const [user, setUser] = useState<IUserData | null>(null);
+    const [user, setUser] = useState<IGetUserDataResponse | null>(null);
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState(false);
-
-    const isAuthenticated = !!token;
 
     const login = async (data: LoginFormType) => {
         setIsLoading(true);
         try {
             setErrorMessage(null);
             const result = await authService.login(data as ILoginBody);
-            setUser(result.user);
             setToken(result.token);
             localStorage.setItem("token", result.token);
         } catch (error: unknown) {
@@ -47,10 +46,32 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         localStorage.removeItem("token");
     };
 
+    useEffect(() => {
+        const restoreSession = async () => {
+            const storedToken = localStorage.getItem("token");
+            if (storedToken) {
+                try {
+                    const user = await userService.getUserData({
+                        token: storedToken
+                    });
+                    setUser(user);
+                    setToken(storedToken);
+                } catch (error) {
+                    if (error instanceof Error) {
+                        setErrorMessage(error.message || "Error to logout");
+                    }
+                    logout();
+                }
+            }
+        };
+
+        restoreSession();
+    }, []);
+
     return (
         <AuthContext.Provider
             value={{
-                isAuthenticated,
+                isAuthenticated: !!token,
                 token,
                 user,
                 errorMessage,
