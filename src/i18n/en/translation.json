@@ -11,6 +11,9 @@
             "haveAccount": "Already have an account?",
             "welcomeBack": "Welcome back",
             "signInDescription": "Sign in to your account to continue"
+        },
+        "pageExample": {
+            "welcome": "Welcome"
         }
     },
     "zod": {

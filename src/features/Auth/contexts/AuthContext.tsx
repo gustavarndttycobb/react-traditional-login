@@ -30,6 +30,11 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
             setErrorMessage(null);
             const result = await authService.login(data as ILoginBody);
             setToken(result.token);
+            const user = await userService.getUserData({
+                token: result.token
+            });
+            console.log('user', user);
+            setUser(user);
             localStorage.setItem("token", result.token);
         } catch (error: unknown) {
             if (error instanceof Error) {

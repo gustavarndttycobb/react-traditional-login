@@ -11,6 +11,9 @@
       "haveAccount": "Já tem uma conta?",
       "welcomeBack": "Bem vindo de volta",
       "signInDescription": "Entre com sua conta para continuar"
+    },
+    "pageExample":{
+      "welcome": "Bem vindo"
     }
   },
   "zod": {

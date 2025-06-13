@@ -10,7 +10,8 @@ function BaseLayout({ children }: IBaseLayoutProps) {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'flex-start',
-            justifyContent: 'flex-start'
+            justifyContent: 'flex-start',
+            paddingTop: '50px'
         }}>{children}</Box>
 }
 
