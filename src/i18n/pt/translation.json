@@ -10,9 +10,11 @@
       "signup": "Cadastrar",
       "haveAccount": "Já tem uma conta?",
       "welcomeBack": "Bem vindo de volta",
+      "createAccount": "Criar conta",
+      "signupDescription": "Crie sua conta para comecar",
       "signInDescription": "Entre com sua conta para continuar"
     },
-    "pageExample":{
+    "pageExample": {
       "welcome": "Bem vindo"
     }
   },

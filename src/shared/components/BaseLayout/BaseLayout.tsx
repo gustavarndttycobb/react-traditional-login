@@ -1,18 +1,10 @@
-import { Box } from "@mui/material";
-
+import { StyledBaseLayoutBox } from "./styles"
 interface IBaseLayoutProps {
     readonly children: React.ReactNode
 }
 function BaseLayout({ children }: IBaseLayoutProps) {
-    return <Box
-        sx={{
-            width: '100vw',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'flex-start',
-            justifyContent: 'flex-start',
-            paddingTop: '50px'
-        }}>{children}</Box>
+    return <StyledBaseLayoutBox
+    >{children}</StyledBaseLayoutBox>
 }
 
 export default BaseLayout

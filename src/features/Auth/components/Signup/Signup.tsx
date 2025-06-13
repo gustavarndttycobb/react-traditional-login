@@ -1,10 +1,7 @@
 import { useState } from "react";
 import {
-    Box,
     FormControl,
-    FormHelperText,
     Fade,
-    Typography,
 } from "@mui/material";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -15,6 +12,7 @@ import { signupFormSchema } from "../../schemas/signupFormSchema";
 import { authStepsEnum } from "../../enums/auth.enum";
 import { EmailOutlined, LockOutline, PersonOutline } from "@mui/icons-material";
 import { TextFieldCustom } from "../../../../shared/components/Textfield/Textfield";
+import { StyledCardAccountButtonBox, StyledCardAccountTypography, StyledCardButtonBox, StyledCardContentBox, StyledCardHeaderContentBox, StyledCardHeaderDescriptionTypography, StyledCardHeaderIconBox, StyledCardHeaderTitleTypography, StyledFormHelperText, StyledSignupBox } from "./styles";
 import ButtonCustom from "../../../../shared/components/Button/Button";
 import CardCustom from "../../../../shared/components/Card/Card";
 import SnackbarCustom from "../../../../shared/components/Snackbar/Snackbar";
@@ -61,67 +59,31 @@ function Signup({ setAuthMode }: ISignup) {
     return (
         <>
             <Fade in>
-                <Box
-                    component="form"
+                <StyledSignupBox
+                    as="form"
                     onSubmit={handleSubmit(onSubmit)}
-                    sx={{
-                        display: "flex",
-                        flexDirection: "column",
-                        gap: 2,
-                    }}
                 >
                     <CardCustom
                         headerContent={
-                            <Box
-                                sx={{
-                                    width: "100%",
-                                    display: "flex",
-                                    flexDirection: "column",
-                                    justifyContent: "center",
-                                    alignItems: "center",
-                                    gap: "2px",
-
-                                }}>
-                                <Box
-                                    sx={{
-                                        width: "50px",
-                                        height: "50px",
-                                        backgroundColor: "primary.main",
-                                        display: "flex",
-                                        justifyContent: "center",
-                                        alignItems: "center",
-                                        borderRadius: "1rem",
-                                        color: "white",
-                                        mb: "10px"
-                                    }}>
+                            <StyledCardHeaderContentBox
+                            >
+                                <StyledCardHeaderIconBox
+                                >
                                     <LockOutline sx={{
                                         fontSize: "30px"
                                     }} />
-                                </Box>
-                                <Typography variant="h5" align="center" sx={{
-                                    fontWeight: "bold"
-                                }}>
-                                    {t("feature.auth.welcomeBack")}
-                                </Typography>
-                                <Typography align="center" sx={{
-                                    color: "#737373",
-                                    fontSize: "14px"
-                                }}>
-                                    {t("feature.auth.signInDescription")}
-                                </Typography>
+                                </StyledCardHeaderIconBox>
+                                <StyledCardHeaderTitleTypography variant="h5" align="center" >
+                                    {t("feature.auth.createAccount")}
+                                </StyledCardHeaderTitleTypography>
+                                <StyledCardHeaderDescriptionTypography align="center">
+                                    {t("feature.auth.signupDescription")}
+                                </StyledCardHeaderDescriptionTypography>
 
-                            </Box>
+                            </StyledCardHeaderContentBox>
                         }
-                        cardContent={<Box
-                            sx={{
-                                width: "100%",
-                                display: "flex",
-                                flexDirection: "column",
-                                justifyContent: "center",
-                                alignItems: "center",
-                                gap: "1rem",
-
-                            }}>
+                        cardContent={<StyledCardContentBox
+                        >
                             <FormControl error={!!errors.fullName} fullWidth variant="outlined">
                                 <Controller
                                     name="fullName"
@@ -139,9 +101,7 @@ function Signup({ setAuthMode }: ISignup) {
                                         />
                                     )}
                                 />
-                                <FormHelperText sx={{
-                                    height: "10px"
-                                }}>{errors.fullName?.message}</FormHelperText>
+                                <StyledFormHelperText >{errors.fullName?.message}</StyledFormHelperText>
                             </FormControl>
                             <FormControl error={!!errors.email} fullWidth variant="outlined">
                                 <Controller
@@ -159,9 +119,7 @@ function Signup({ setAuthMode }: ISignup) {
                                         />
                                     )}
                                 />
-                                <FormHelperText sx={{
-                                    height: "10px"
-                                }}>{errors.email?.message}</FormHelperText>
+                                <StyledFormHelperText>{errors.email?.message}</StyledFormHelperText>
                             </FormControl>
 
                             <FormControl error={!!errors.password} fullWidth variant="outlined">
@@ -182,9 +140,7 @@ function Signup({ setAuthMode }: ISignup) {
                                         />
                                     )}
                                 />
-                                <FormHelperText sx={{
-                                    height: "10px"
-                                }}>{errors.password?.message}</FormHelperText>
+                                <StyledFormHelperText>{errors.password?.message}</StyledFormHelperText>
                             </FormControl>
                             <FormControl error={!!errors.confirmPassword} fullWidth variant="outlined">
 
@@ -206,39 +162,19 @@ function Signup({ setAuthMode }: ISignup) {
                                         />
                                     )}
                                 />
-                                <FormHelperText sx={{
-                                    height: "10px"
-                                }}>{errors.confirmPassword?.message}</FormHelperText>
+                                <StyledFormHelperText>{errors.confirmPassword?.message}</StyledFormHelperText>
                             </FormControl>
-                            <Box
-                                sx={{
-                                    width: "100%",
-                                    display: "flex",
-                                    flexDirection: "column",
-                                    justifyContent: "space-between",
-                                    alignItems: "center",
-                                    mt: "5px",
-                                    gap: "1rem"
-                                }}>
+                            <StyledCardButtonBox>
                                 <ButtonCustom label={loading ? t("feature.auth.loading") : t("feature.auth.signup")}
                                     isLoading={loading}
                                     size="large"
                                     type="submit"
                                 />
-                                <Box
-                                    sx={{
-                                        width: "100%",
-                                        display: "flex",
-                                        flexDirection: "row",
-                                        justifyContent: "center",
-                                        alignItems: "center",
-                                    }}
+                                <StyledCardAccountButtonBox
                                 >
-                                    <Typography variant="body2" align="center" sx={{
-                                        color: "#737373"
-                                    }}>
+                                    <StyledCardAccountTypography variant="body2" align="center">
                                         {t("feature.auth.haveAccount")}
-                                    </Typography>
+                                    </StyledCardAccountTypography>
 
                                     <ButtonCustom disabled={loading} onClick={toggleAuthMode} label={loading ? t("feature.auth.loading") : t("feature.auth.signup")} variant="text"
                                         sx={{
@@ -246,14 +182,14 @@ function Signup({ setAuthMode }: ISignup) {
                                         }}
                                     />
 
-                                </Box>
-                            </Box>
-                        </Box>}
+                                </StyledCardAccountButtonBox>
+                            </StyledCardButtonBox>
+                        </StyledCardContentBox>}
                         sx={{
                             width: "600px"
                         }}
                     />
-                </Box>
+                </StyledSignupBox>
             </Fade>
             <SnackbarCustom message={errorMessage ?? ""} snackbarOpen={snackbarOpen} setSnackbarOpen={setSnackbarOpen} severity="error" />
         </>

@@ -1,8 +1,8 @@
-import { Box } from "@mui/material";
 import { useThemeContext } from "../../contexts/ThemeContext";
 import { useTranslation } from "react-i18next";
 import { ThemeToggleButton } from "../ThemeToggleButton/ThemeToggleButton";
 import { LanguageSelectorButton } from "../LanguageSelectorButton/LanguageSelectorButton";
+import { StyledHeaderBox } from "./styles";
 
 function Header() {
   const { toggleColorMode } = useThemeContext();
@@ -13,22 +13,12 @@ function Header() {
   };
 
   return (
-    <Box sx={{
-      width: "100%",
-      display: "flex",
-      justifyContent: "flex-end",
-      alignItems: "center",
-      gap: 2,
-      padding: 1,
-      position: "fixed",
-      backgroundColor: "transparent",
-      height: "50px",
-    }}>
+    <StyledHeaderBox>
       <LanguageSelectorButton currentLanguage={i18n.language} languages={[{ code: 'en', label: 'English' }, { code: 'pt', label: 'Português' }]}
         onChangeLanguage={handleLanguageChange}
       />
       <ThemeToggleButton onClickToggleTheme={toggleColorMode} />
-    </Box>
+    </StyledHeaderBox>
   );
 }
 

@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react";
 import {
-    Box,
     FormControl,
-    FormHelperText,
-    Typography,
     Fade,
 } from "@mui/material";
 import { useForm, Controller } from "react-hook-form";
@@ -20,6 +17,7 @@ import { TextFieldCustom } from "../../../../shared/components/Textfield/Textfie
 import ButtonCustom from "../../../../shared/components/Button/Button";
 import SnackbarCustom from "../../../../shared/components/Snackbar/Snackbar";
 import CardCustom from "../../../../shared/components/Card/Card";
+import { StyledCardAccountButtonBox, StyledCardAccountTypography, StyledCardButtonBox, StyledCardContentBox, StyledCardHeaderContentBox, StyledCardHeaderDescriptionTypography, StyledCardHeaderIconBox, StyledCardHeaderTitleTypography, StyledFormHelperText, StyledLoginBox } from "./styles";
 
 interface ILogin {
     readonly setAuthMode: React.Dispatch<React.SetStateAction<authStepsEnum>>
@@ -62,67 +60,30 @@ function Login({ setAuthMode }: ILogin) {
     return (
         <>
             <Fade in>
-                <Box
-                    component="form"
+                <StyledLoginBox
+                    as="form"
                     onSubmit={handleSubmit(onSubmit)}
-                    sx={{
-                        display: "flex",
-                        flexDirection: "column",
-                        gap: 2,
-                    }}
+
                 >
                     <CardCustom
                         headerContent={
-                            <Box
-                                sx={{
-                                    width: "100%",
-                                    display: "flex",
-                                    flexDirection: "column",
-                                    justifyContent: "center",
-                                    alignItems: "center",
-                                    gap: "2px",
-
-                                }}>
-                                <Box
-                                    sx={{
-                                        width: "50px",
-                                        height: "50px",
-                                        backgroundColor: "primary.main",
-                                        display: "flex",
-                                        justifyContent: "center",
-                                        alignItems: "center",
-                                        borderRadius: "1rem",
-                                        color: "white",
-                                        mb: "10px"
-                                    }}>
+                            <StyledCardHeaderContentBox>
+                                <StyledCardHeaderIconBox>
                                     <LockOutline sx={{
                                         fontSize: "30px"
                                     }} />
-                                </Box>
-                                <Typography variant="h5" align="center" sx={{
-                                    fontWeight: "bold"
-                                }}>
+                                </StyledCardHeaderIconBox>
+                                <StyledCardHeaderTitleTypography variant="h5" align="center" >
                                     {t("feature.auth.welcomeBack")}
-                                </Typography>
-                                <Typography align="center" sx={{
-                                    color: "#737373",
-                                    fontSize: "14px"
-                                }}>
+                                </StyledCardHeaderTitleTypography>
+                                <StyledCardHeaderDescriptionTypography align="center" >
                                     {t("feature.auth.signInDescription")}
-                                </Typography>
+                                </StyledCardHeaderDescriptionTypography>
 
-                            </Box>
+                            </StyledCardHeaderContentBox>
                         }
-                        cardContent={<Box
-                            sx={{
-                                width: "100%",
-                                display: "flex",
-                                flexDirection: "column",
-                                justifyContent: "center",
-                                alignItems: "center",
-                                gap: "1rem",
-
-                            }}>
+                        cardContent={<StyledCardContentBox
+                        >
 
                             <FormControl error={!!errors.email} fullWidth variant="outlined">
                                 <Controller
@@ -140,9 +101,7 @@ function Login({ setAuthMode }: ILogin) {
                                         />
                                     )}
                                 />
-                                <FormHelperText sx={{
-                                    height: "10px"
-                                }}>{errors.email?.message}</FormHelperText>
+                                <StyledFormHelperText>{errors.email?.message}</StyledFormHelperText>
                             </FormControl>
 
                             <FormControl error={!!errors.password} fullWidth variant="outlined">
@@ -163,39 +122,19 @@ function Login({ setAuthMode }: ILogin) {
                                         />
                                     )}
                                 />
-                                <FormHelperText sx={{
-                                    height: "10px"
-                                }}>{errors.password?.message}</FormHelperText>
+                                <StyledFormHelperText>{errors.password?.message}</StyledFormHelperText>
                             </FormControl>
-                            <Box
-                                sx={{
-                                    width: "100%",
-                                    display: "flex",
-                                    flexDirection: "column",
-                                    justifyContent: "space-between",
-                                    alignItems: "center",
-                                    mt: "5px",
-                                    gap: "1rem"
-                                }}>
+                            <StyledCardButtonBox>
                                 <ButtonCustom label={isLoading ? t("feature.auth.loading") : t("feature.auth.signin")}
                                     isLoading={isLoading}
                                     size="large"
                                     type="submit"
                                 />
-                                <Box
-                                    sx={{
-                                        width: "100%",
-                                        display: "flex",
-                                        flexDirection: "row",
-                                        justifyContent: "center",
-                                        alignItems: "center",
-                                    }}
+                                <StyledCardAccountButtonBox
                                 >
-                                    <Typography variant="body2" align="center" sx={{
-                                        color: "#737373"
-                                    }}>
+                                    <StyledCardAccountTypography variant="body2" align="center">
                                         {t("feature.auth.dontHaveAccount")}
-                                    </Typography>
+                                    </StyledCardAccountTypography>
 
                                     <ButtonCustom disabled={isLoading} onClick={toggleAuthMode} label={t("feature.auth.signup")} variant="text"
                                         sx={{
@@ -203,16 +142,14 @@ function Login({ setAuthMode }: ILogin) {
                                         }}
                                     />
 
-                                </Box>
-
-                            </Box>
-
-                        </Box>}
+                                </StyledCardAccountButtonBox>
+                            </StyledCardButtonBox>
+                        </StyledCardContentBox>}
                         sx={{
                             width: "600px"
                         }}
                     />
-                </Box>
+                </StyledLoginBox>
             </Fade>
             <SnackbarCustom message={errorMessage ?? ""} snackbarOpen={snackbarOpen} setSnackbarOpen={setSnackbarOpen} severity="error" />
         </>

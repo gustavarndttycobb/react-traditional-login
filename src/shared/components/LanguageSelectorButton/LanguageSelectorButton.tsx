@@ -1,13 +1,11 @@
 import React from 'react';
 import {
-    Button,
-    Menu,
     MenuItem,
     ButtonProps,
     ListItemText,
 } from '@mui/material';
-import { styled } from '@mui/material/styles';
 import { Translate } from '@mui/icons-material';
+import { StyledButton, StyledMenu } from './styles';
 
 type Language = {
     code: string;
@@ -21,23 +19,7 @@ type Props = ButtonProps & {
     onChangeLanguage: (code: string) => void;
 };
 
-const StyledButton = styled(Button)(({ theme }) => ({
-    position: 'relative',
-    width: '40px',
-    height: '40px',
-    minWidth: '40px',
-    padding: 0,
-    overflow: 'hidden',
-    borderRadius: theme.shape.borderRadius,
-    border: `1px solid ${theme.palette.divider}`,
-    color: theme.palette.text.primary,
-    transition: 'all 300ms ease',
-    '&:hover': {
-        border: `1px solid ${theme.palette.divider}`,
-        transform: 'scale(1.05)',
-    },
 
-}));
 
 export function LanguageSelectorButton({
     languages,
@@ -71,7 +53,7 @@ export function LanguageSelectorButton({
             >
                 <Translate fontSize='small' />
             </StyledButton>
-            <Menu
+            <StyledMenu
                 id="language-menu"
                 anchorEl={anchorEl}
                 open={open}
@@ -85,9 +67,6 @@ export function LanguageSelectorButton({
                     vertical: 'top',
                     horizontal: 'center',
                 }}
-                sx={{
-                    marginTop: 1,
-                }}
             >
                 {languages.map((lang) => (
                     <MenuItem
@@ -98,7 +77,7 @@ export function LanguageSelectorButton({
                         <ListItemText>{lang.label}</ListItemText>
                     </MenuItem>
                 ))}
-            </Menu>
+            </StyledMenu>
         </>
     );
 }

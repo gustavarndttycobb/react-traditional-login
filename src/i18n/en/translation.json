@@ -10,6 +10,8 @@
             "signup": "Sign up",
             "haveAccount": "Already have an account?",
             "welcomeBack": "Welcome back",
+            "createAccount": "Create account",
+            "signupDescription": "Sign up to get started with your account",
             "signInDescription": "Sign in to your account to continue"
         },
         "pageExample": {
