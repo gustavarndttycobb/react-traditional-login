@@ -74,14 +74,14 @@ Create a `.env` file at the root of your project with the following variables:
 
 ```env
 VITE_API_URL=http://localhost:3000/api
-VITE_FEATURE_FLAG=mocks  # Use "mocks" for MSW or "api" for real API
+VITE_FEATURE_FLAG=true  # Use "true" for MSW or "false" for real API
 ```
 
 ### 🔄 Switching Between Mocked and Real API
 
 The app uses MSW by default. To switch between mocked service and real backend:
 
-- Set `VITE_FEATURE_FLAG=mocks` to use MSW
+- Set `VITE_FEATURE_FLAG=true` to use MSW
 - Set `VITE_FEATURE_FLAG=api` to call a real backend API
 
 ---
