@@ -8,20 +8,19 @@ import {
 } from "@mui/material";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-
 import { useTranslation } from "react-i18next";
 import { authService } from "../../services/auth.service";
 import { SignupFormType } from "../../types/signupFormType";
 import { signupFormSchema } from "../../schemas/signupFormSchema";
 import { authStepsEnum } from "../../enums/auth.enum";
-import SnackbarCustom from "../../../../shared/components/Snackbar/Snackbar";
-import CardCustom from "../../../../shared/components/Card/Card";
 import { EmailOutlined, LockOutline, PersonOutline } from "@mui/icons-material";
 import { TextFieldCustom } from "../../../../shared/components/Textfield/Textfield";
 import ButtonCustom from "../../../../shared/components/Button/Button";
+import CardCustom from "../../../../shared/components/Card/Card";
+import SnackbarCustom from "../../../../shared/components/Snackbar/Snackbar";
 
 interface ISignup {
-    setAuthMode: React.Dispatch<React.SetStateAction<authStepsEnum>>
+    readonly setAuthMode: React.Dispatch<React.SetStateAction<authStepsEnum>>
 }
 function Signup({ setAuthMode }: ISignup) {
     const { t } = useTranslation();
@@ -37,12 +36,12 @@ function Signup({ setAuthMode }: ISignup) {
         resolver: zodResolver(signupFormSchema),
     });
 
-    const onSubmit = async (data: SignupFormType) => {
+    const onSubmit = async (signupFormData: SignupFormType) => {
         setLoading(true);
         try {
             setErrorMessage(null);
 
-            const result = await authService.signup(data as SignupFormType);
+            const result = await authService.signup(signupFormData);
             console.log("Signup success:", result);
         } catch (error: unknown) {
             if (error instanceof Error) {
@@ -72,7 +71,7 @@ function Signup({ setAuthMode }: ISignup) {
                     }}
                 >
                     <CardCustom
-                        header={
+                        headerContent={
                             <Box
                                 sx={{
                                     width: "100%",
@@ -113,7 +112,7 @@ function Signup({ setAuthMode }: ISignup) {
 
                             </Box>
                         }
-                        children={<Box
+                        cardContent={<Box
                             sx={{
                                 width: "100%",
                                 display: "flex",

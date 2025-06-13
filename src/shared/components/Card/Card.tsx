@@ -1,5 +1,3 @@
-// components/LoginCard.tsx
-import { ReactNode } from 'react';
 import { styled } from '@mui/material/styles';
 import { Card, CardContent, CardHeader, CardProps } from '@mui/material';
 
@@ -15,15 +13,15 @@ const StyledCard = styled(Card)(({ theme }) => ({
 }));
 
 type LoginCardProps = CardProps & {
-    header?: ReactNode;
-    children?: ReactNode;
+    headerContent?: React.ReactNode;
+    cardContent?: React.ReactNode;
 }
 
-export const CardCustom = ({ header, children, ...props }: LoginCardProps) => {
+export const CardCustom = ({ headerContent, cardContent, ...props }: LoginCardProps) => {
     return (
         <StyledCard {...props}>
-            {header && <CardHeader title={header} />}
-            {children && <CardContent>{children}</CardContent>}
+            {headerContent && <CardHeader title={headerContent} />}
+            {cardContent && <CardContent>{cardContent}</CardContent>}
         </StyledCard>
     );
 };

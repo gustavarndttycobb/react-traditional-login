@@ -1,6 +1,9 @@
 import { Box } from "@mui/material";
 
-function BaseLayout({ children }: { children: React.ReactNode }) {
+interface IBaseLayoutProps {
+    readonly children: React.ReactNode
+}
+function BaseLayout({ children }: IBaseLayoutProps) {
     return <Box
         sx={{
             width: '100vw',

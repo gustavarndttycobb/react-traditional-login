@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import { LoginFormType } from "../types/loginFormType";
 import { authService } from "../services/auth.service";
 import { IUserData } from "../models/userData.model";
@@ -46,6 +46,16 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         localStorage.removeItem("token");
     };
 
+    const authContextValue = useMemo(() => ({
+        isAuthenticated: !!token,
+        token,
+        user,
+        errorMessage,
+        isLoading,
+        login,
+        logout
+    }), [token, user, errorMessage, isLoading, login, logout]);
+
     useEffect(() => {
         const restoreSession = async () => {
             const storedToken = localStorage.getItem("token");
@@ -70,15 +80,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
     return (
         <AuthContext.Provider
-            value={{
-                isAuthenticated: !!token,
-                token,
-                user,
-                errorMessage,
-                isLoading,
-                login,
-                logout
-            }}
+            value={authContextValue}
         >
             {children}
         </AuthContext.Provider>

@@ -1,10 +1,10 @@
 import { Alert, AlertColor, Snackbar, } from "@mui/material"
 
 interface ISnackbarCustom {
-    message: string
-    snackbarOpen: boolean
-    setSnackbarOpen: React.Dispatch<React.SetStateAction<boolean>>
-    severity: AlertColor
+    readonly message: string
+    readonly snackbarOpen: boolean
+    readonly setSnackbarOpen: React.Dispatch<React.SetStateAction<boolean>>
+    readonly severity: AlertColor
 }
 function SnackbarCustom({ message, snackbarOpen, setSnackbarOpen, severity }: ISnackbarCustom) {
     return <Snackbar

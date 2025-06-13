@@ -5,6 +5,7 @@ import { authResponseMocked } from "../../features/Auth/mocks/authResponse.mock"
 import { authBodyMocked } from "../../features/Auth/mocks/authBody.mock";
 import { ISignupBody } from "../../features/Auth/models/signupBody.model";
 import { LOGIN_ENDPOINT, SIGNUP_ENDPOINT } from "../../utils/endpoints";
+import { ISignupResponse } from "../../features/Auth/models/signupResponse.model";
 
 const loginServiceHandler = http.post(LOGIN_ENDPOINT, async ({ request }) => {
     const requestBody = await request.json() as ILoginBody;
@@ -25,7 +26,7 @@ const signupServiceHandler = http.post(SIGNUP_ENDPOINT, async ({ request }) => {
     if (!firstName || !lastName || !email || !password) {
         return HttpResponse.json({ message: `missing required fields` }, { status: 401 });
     }
-    return HttpResponse.json({ message: `User successfully created` }, { status: 201 });
+    return HttpResponse.json<ISignupResponse>({ message: `User successfully created` });
 })
 
 const authHandlers = [

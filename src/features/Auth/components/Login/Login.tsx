@@ -15,14 +15,14 @@ import { ILoginBody } from "../../models/loginBody.model";
 import { authStepsEnum } from "../../enums/auth.enum";
 import { useAuth } from "../../contexts/AuthContext";
 import { useNavigate } from "react-router";
-import SnackbarCustom from "../../../../shared/components/Snackbar/Snackbar";
-import CardCustom from "../../../../shared/components/Card/Card";
 import { EmailOutlined, LockOutline } from "@mui/icons-material";
 import { TextFieldCustom } from "../../../../shared/components/Textfield/Textfield";
 import ButtonCustom from "../../../../shared/components/Button/Button";
+import SnackbarCustom from "../../../../shared/components/Snackbar/Snackbar";
+import CardCustom from "../../../../shared/components/Card/Card";
 
 interface ILogin {
-    setAuthMode: React.Dispatch<React.SetStateAction<authStepsEnum>>
+    readonly setAuthMode: React.Dispatch<React.SetStateAction<authStepsEnum>>
 }
 function Login({ setAuthMode }: ILogin) {
     const { t } = useTranslation();
@@ -39,8 +39,8 @@ function Login({ setAuthMode }: ILogin) {
         resolver: zodResolver(loginFormSchema),
     });
 
-    const onSubmit = async (data: LoginFormType) => {
-        await login(data as ILoginBody);
+    const onSubmit = async (loginFormData: LoginFormType) => {
+        await login(loginFormData as ILoginBody);
     };
 
     const toggleAuthMode = () => {
@@ -72,7 +72,7 @@ function Login({ setAuthMode }: ILogin) {
                     }}
                 >
                     <CardCustom
-                        header={
+                        headerContent={
                             <Box
                                 sx={{
                                     width: "100%",
@@ -113,7 +113,7 @@ function Login({ setAuthMode }: ILogin) {
 
                             </Box>
                         }
-                        children={<Box
+                        cardContent={<Box
                             sx={{
                                 width: "100%",
                                 display: "flex",
@@ -212,10 +212,6 @@ function Login({ setAuthMode }: ILogin) {
                             width: "600px"
                         }}
                     />
-
-
-
-
                 </Box>
             </Fade>
             <SnackbarCustom message={errorMessage ?? ""} snackbarOpen={snackbarOpen} setSnackbarOpen={setSnackbarOpen} severity="error" />

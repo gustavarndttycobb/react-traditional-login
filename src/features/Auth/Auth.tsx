@@ -11,7 +11,6 @@ function Auth() {
     const [authMode, setAuthMode] = useState<authStepsEnum>(authStepsEnum.LOGIN);
 
     return (
-
         <Fade in>
             <Box
                 sx={{
@@ -23,7 +22,6 @@ function Auth() {
                     gap: 2,
                 }}
             >
-
                 {authMode === authStepsEnum.LOGIN && (
                     <Login setAuthMode={setAuthMode} />
                 )}

@@ -2,14 +2,13 @@ import { createTheme, ThemeOptions } from '@mui/material';
 
 const sharedTheme: ThemeOptions = {
   shape: {
-    borderRadius: 12, // baseado em --radius: 0.75rem = 12px
+    borderRadius: 12, 
   },
   typography: {
     fontFamily: `'Inter', sans-serif`,
   }
 };
 
-// Utilizando os valores do seu CSS :root e .dark
 export const lightTheme = createTheme({
   ...sharedTheme,
   palette: {

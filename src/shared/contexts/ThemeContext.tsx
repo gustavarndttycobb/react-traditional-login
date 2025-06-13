@@ -1,4 +1,4 @@
-import { createContext, useState, useContext, ReactNode } from "react";
+import { createContext, useState, useContext, ReactNode, useMemo } from "react";
 import { ThemeProvider as MuiThemeProvider, PaletteMode } from "@mui/material";
 import CssBaseline from "@mui/material/CssBaseline";
 import { darkTheme, lightTheme } from "../../utils/theme";
@@ -21,13 +21,15 @@ export const useThemeContext = () => {
 export const ThemeProviderCustom = ({ children }: { children: ReactNode }) => {
     const [theme, setTheme] = useState<PaletteMode>("light");
 
+
     const toggleColorMode = () => {
         setTheme((prev) => (prev === "light" ? "dark" : "light"));
     };
 
+    const ThemeContextValue = useMemo(() => ({ theme, toggleColorMode }), [theme, toggleColorMode]);
 
     return (
-        <ThemeContext.Provider value={{ theme, toggleColorMode }}>
+        <ThemeContext.Provider value={ThemeContextValue}>
             <MuiThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
                 <CssBaseline />
                 {children}

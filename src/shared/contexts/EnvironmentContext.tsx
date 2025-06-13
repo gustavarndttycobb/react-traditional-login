@@ -1,4 +1,4 @@
-import { createContext, useState, useContext, ReactNode, useEffect } from "react";
+import { createContext, useState, useContext, ReactNode, useEffect, useMemo } from "react";
 import env from "../../utils/env";
 
 type EnvironmentContextType = {
@@ -18,13 +18,19 @@ export const useEnvironmentContext = () => {
 export const EnvironmentProvider = ({ children }: { children: ReactNode }) => {
     const [isDevelopmentMode, setIsDevelopmentMode] = useState<boolean>(true);
 
+    const environmentContextValue = useMemo(() => ({
+        isDevelopmentMode
+    }), [
+        isDevelopmentMode
+    ]);
+
     useEffect(() => {
         setIsDevelopmentMode(env.MOCKS_ENABLED);
     }, []);
 
 
     return (
-        <EnvironmentContext.Provider value={{ isDevelopmentMode }}>
+        <EnvironmentContext.Provider value={environmentContextValue}>
             {children}
         </EnvironmentContext.Provider>
     );
