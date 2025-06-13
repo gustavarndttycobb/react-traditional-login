@@ -1,0 +1,26 @@
+{
+    "feature": {
+        "auth": {
+            "signin": "Sign in",
+            "email": "Email",
+            "password": "Password",
+            "dontHaveAccount": "Don't have an account?",
+            "fullName": "Full name",
+            "confirmPassword": "Confirm password",
+            "signup": "Sign up",
+            "haveAccount": "Already have an account?",
+            "welcomeBack": "Welcome back",
+            "createAccount": "Create account",
+            "signupDescription": "Sign up to get started with your account",
+            "signInDescription": "Sign in to your account to continue"
+        },
+        "pageExample": {
+            "welcome": "Welcome"
+        }
+    },
+    "zod": {
+        "required": "This field is required.",
+        "invalid_email": "Invalid email format.",
+        "min_length": "Must be at least {{min}} characters long."
+    }
+}

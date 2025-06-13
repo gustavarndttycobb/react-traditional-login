@@ -1,0 +1,26 @@
+{
+  "feature": {
+    "auth": {
+      "signin": "Entrar",
+      "email": "Email",
+      "password": "Senha",
+      "dontHaveAccount": "Não tem uma conta?",
+      "fullName": "Nome completo",
+      "confirmPassword": "Confirmar senha",
+      "signup": "Cadastrar",
+      "haveAccount": "Já tem uma conta?",
+      "welcomeBack": "Bem vindo de volta",
+      "createAccount": "Criar conta",
+      "signupDescription": "Crie sua conta para comecar",
+      "signInDescription": "Entre com sua conta para continuar"
+    },
+    "pageExample": {
+      "welcome": "Bem vindo"
+    }
+  },
+  "zod": {
+    "required": "Campo obrigatório.",
+    "invalid_email": "Formato de email inválido.",
+    "min_length": "Mínimo de {{min}} caracteres."
+  }
+}
