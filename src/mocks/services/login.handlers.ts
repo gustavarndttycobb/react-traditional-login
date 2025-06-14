@@ -21,9 +21,8 @@ const signupServiceHandler = http.post(SIGNUP_ENDPOINT, async ({ request }) => {
     const requestBody = await request.json() as ISignupBody;
     const email = requestBody?.email;
     const password = requestBody?.password;
-    const firstName = requestBody?.firstName;
-    const lastName = requestBody?.lastName;
-    if (!firstName || !lastName || !email || !password) {
+    const fullName = requestBody?.fullName;
+    if (!fullName || !email || !password) {
         return HttpResponse.json({ message: `missing required fields` }, { status: 401 });
     }
     return HttpResponse.json<ISignupResponse>({ message: `User successfully created` });

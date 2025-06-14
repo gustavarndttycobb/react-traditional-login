@@ -16,6 +16,7 @@ import { StyledCardAccountButtonBox, StyledCardAccountTypography, StyledCardButt
 import ButtonCustom from "../../../../shared/components/Button/Button";
 import CardCustom from "../../../../shared/components/Card/Card";
 import SnackbarCustom from "../../../../shared/components/Snackbar/Snackbar";
+import { ISignupBody } from "../../models/signupBody.model";
 
 interface ISignup {
     readonly setAuthMode: React.Dispatch<React.SetStateAction<authStepsEnum>>
@@ -38,8 +39,12 @@ function Signup({ setAuthMode }: ISignup) {
         setLoading(true);
         try {
             setErrorMessage(null);
-
-            const result = await authService.signup(signupFormData);
+            const signupBody: ISignupBody = {
+                fullName: signupFormData.fullName,
+                email: signupFormData.email,
+                password: signupFormData.password
+            }
+            const result = await authService.signup(signupBody);
             console.log("Signup success:", result);
         } catch (error: unknown) {
             if (error instanceof Error) {
