@@ -2,13 +2,18 @@ import authHandlers from "../../../mocks/services/login.handlers";
 import { LOGIN_ENDPOINT, SIGNUP_ENDPOINT } from "../../../utils/endpoints";
 import { authService, AuthService } from "../services/auth.service";
 
+jest.mock('../../../utils/env.ts', () => ({
+    env: {
+        API_URL: 'http://localhost:3000',
+        MOCKS_ENABLED: true
+    }
+}));
 
 const serviceMethodToPathMap: Record<keyof AuthService, string> = {
     login: LOGIN_ENDPOINT,
     signup: SIGNUP_ENDPOINT
-    //TODO: logout: "/api/auth/logout"
-    //TODO: register: "/api/auth/register"
 };
+
 
 describe("Mock handlers coverage validation", () => {
     it("should have a handler for each AuthService method", () => {

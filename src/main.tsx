@@ -7,10 +7,13 @@ import "@fontsource/roboto/700.css";
 import App from "./app/App";
 import { EnvironmentProvider } from "./shared/contexts/EnvironmentContext";
 import ReactDOM from "react-dom/client";
+import env from "./utils/env";
 
 async function deferRender() {
-  const { worker } = await import('./mocks/browser')
-  return worker.start()
+  if (env.MOCKS_ENABLED) {
+    const { worker } = await import('./mocks/browser')
+    return worker.start()
+  }
 }
 
 deferRender().then(() => {
